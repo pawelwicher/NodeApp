@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 });
 
 app.use((req, res) => {
-  res.type('text/plain');
+  res.type('text/plain')
   res.status(404);
   res.send('Not Found');
 });
