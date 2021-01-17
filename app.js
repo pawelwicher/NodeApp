@@ -4,12 +4,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.type('text/plain');
   res.send(lib.hello);
 });
 
+app.get('/data', (req, res) => {
+  res.json(lib.foo);
+});
+
 app.use((req, res) => {
-  res.type('text/plain')
   res.status(404);
   res.send('Not Found');
 });
