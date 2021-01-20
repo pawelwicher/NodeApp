@@ -12,6 +12,7 @@ module.exports = {
     ecmaVersion: 12
   },
   rules: {
-    semi: 'off'
+    semi: 'off',
+    'space-before-function-paren': 'off'
   }
 }

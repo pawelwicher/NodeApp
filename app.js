@@ -1,17 +1,31 @@
 const express = require('express');
 const lib = require('./src/lib');
+const db = require('./src/db');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send(lib.hello);
+app.use(express.static('public'));
+
+app.get('/', (_req, res) => {
+  res.contentType('html');
+  res.send('<h1>Hello World</h1>');
 });
 
-app.get('/data', (req, res) => {
-  res.json(lib.foo);
+app.get('/hello', (_req, res) => {
+  res.contentType('text');
+  res.send('Hello World');
 });
 
-app.use((req, res) => {
+app.get('/fib/:n', (req, res) => {
+  res.json({ value: lib.fib(req.params.n) });
+});
+
+app.get('/registers', async (_req, res) => {
+  const result = await db.selectAllRegisters();
+  res.json(result);
+});
+
+app.use((_req, res) => {
   res.status(404);
   res.send('Not Found');
 });
