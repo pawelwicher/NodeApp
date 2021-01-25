@@ -2,6 +2,7 @@ const express = require('express');
 require('express-async-errors');
 const lib = require('./src/lib');
 const db = require('./src/db');
+const astros = require('./src/astros');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -16,6 +17,8 @@ app.get('/fib/:n', (req, res) => res.json({ value: lib.fib(req.params.n) }));
 app.get('/registers', async (_req, res) => res.json(await db.selectAllRegisters()));
 
 app.get('/registers/text', async (_req, res) => res.contentType('text/plain').send(await db.selectAllRegistersAsText()));
+
+app.get('/astros', async (_req, res) => res.contentType('text/plain').send(await astros.getAstros()));
 
 app.use((_req, res) => res.status(404).contentType('text/plain').send('Not Found'));
 
