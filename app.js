@@ -3,6 +3,7 @@ require('express-async-errors');
 const lib = require('./src/lib');
 const db = require('./src/db');
 const astros = require('./src/astros');
+const email = require('./src/email');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -19,6 +20,8 @@ app.get('/registers', async (_req, res) => res.json(await db.selectAllRegisters(
 app.get('/registers/text', async (_req, res) => res.contentType('text/plain').send(await db.selectAllRegistersAsText()));
 
 app.get('/astros', async (_req, res) => res.contentType('text/plain').send(await astros.getAstros()));
+
+app.get('/email', async (_req, res) => res.contentType('text/plain').send(await email.send()));
 
 app.use((_req, res) => res.status(404).contentType('text/plain').send('Not Found'));
 
