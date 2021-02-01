@@ -4,6 +4,7 @@ const lib = require('./src/lib');
 const db = require('./src/db');
 const astros = require('./src/astros');
 const email = require('./src/email');
+const os = require('os');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -22,6 +23,8 @@ app.get('/registers/text', async (_req, res) => res.contentType('text/plain').se
 app.get('/astros', async (_req, res) => res.contentType('text/plain').send(await astros.getAstros()));
 
 app.get('/email', async (_req, res) => res.contentType('text/plain').send(await email.send()));
+
+app.get('/cpus', (_req, res) => res.contentType('text/plain').send(JSON.stringify(os.cpus())));
 
 app.use((_req, res) => res.status(404).contentType('text/plain').send('Not Found'));
 
