@@ -30,6 +30,12 @@ app.get('/cpus', (_req, res) => res.contentType('text/plain').send(JSON.stringif
 
 app.get('/file', async (_req, res) => res.contentType('text/plain').send(await file.getFileContent()));
 
+app.get('/redis/set/:key/:value', async (req, res) => res.contentType('text/plain').send(await redis.setValue(req.params.key, req.params.value)));
+
+app.get('/redis/get/:key', async (req, res) => res.contentType('text/plain').send(await redis.getValue(req.params.key)));
+
+app.get('/redis/keys', async (_req, res) => res.contentType('text/plain').send(await redis.getKeys()));
+
 app.use((_req, res) => res.status(404).contentType('text/plain').send('Not Found'));
 
 app.use((err, _req, res, _next) => res.status(500).contentType('text/plain').json({ error: err.message }));
