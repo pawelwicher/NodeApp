@@ -5,6 +5,7 @@ const db = require('./src/db');
 const astros = require('./src/astros');
 const email = require('./src/email');
 const file = require('./src/file');
+const redis = require('./src/redis');
 const os = require('os');
 const app = express();
 const port = process.env.PORT || 3000;
