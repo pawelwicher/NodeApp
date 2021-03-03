@@ -5,8 +5,12 @@ module.exports = {
     es2021: true,
     jest: true
   },
+  plugins: [
+    "functional"
+  ],
   extends: [
-    'standard'
+    'standard',
+    'plugin:functional/all'
   ],
   parserOptions: {
     ecmaVersion: 12

@@ -7,7 +7,7 @@ function osInfo() {
     `version: ${os.version()}`,
     `release: ${os.release()}`,
     `freemem: ${os.freemem()}`,
-    `cpus: ${JSON.stringify(os.cpus())}`,
+    `cpus: ${JSON.stringify(os.cpus())}`
   ].join('\n')
 }
 
