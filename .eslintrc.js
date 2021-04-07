@@ -16,7 +16,10 @@ module.exports = {
     ecmaVersion: 12
   },
   rules: {
-    semi: 'off',
-    'space-before-function-paren': 'off'
+    'semi': 'off',
+    'space-before-function-paren': 'off',
+    'functional/no-expression-statement': 'off',
+    'functional/immutable-data': 'off',
+    'functional/functional-parameters': 'off'
   }
 }
